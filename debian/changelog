@@ -1,0 +1,61 @@
+c2i-annu (0.99~3) unstable; urgency=low
+
+  * Added SQL synchro for teachers.
+  * Added a smarty abstract class with error, warning and info functions
+  * Corrected a bug in template files (missing closing tag)
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Thu, 13 Oct 2011 21:19:50 +0200
+
+c2i-annu (0.98) unstable; urgency=low
+
+  * Added email presentation to listing
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Tue, 14 Dec 2010 10:15:40 +0100
+
+c2i-annu (0.97) unstable; urgency=low
+
+  * Added email synchronisation for pupil
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Fri, 26 Nov 2010 02:32:40 +0100
+
+c2i-annu (0.96) unstable; urgency=low
+
+  * Added csv pupils import for sadmin
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Tue, 05 Oct 2010 15:48:11 +0200
+
+c2i-annu (0.95) unstable; urgency=low
+
+  * added a list teachers global for the superadmin.
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Mon, 27 Sep 2010 01:07:39 +0200
+
+c2i-annu (0.94) unstable; urgency=low
+
+  * Pupil import now give password
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Mon, 27 Sep 2010 00:29:43 +0200
+
+c2i-annu (0.93) unstable; urgency=low
+
+  * Corrected a bug in pupils_CSV export
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Sun, 26 Sep 2010 23:00:21 +0200
+
+c2i-annu (0.92) unstable; urgency=low
+
+  * Added mail for pupils
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Tue, 29 Jun 2010 15:10:11 +0200
+
+c2i-annu (0.91) unstable; urgency=low
+
+  * Added a purge and clean of LDAP
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Tue, 29 Jun 2010 10:10:04 +0200
+
+c2i-annu (0.9) UNRELEASED; urgency=low
+
+  * Initial Release.
+
+ -- Laurent COOPER <laurent@ac-grenoble.fr>  Wed, 26 May 2010 11:36:18 +0200

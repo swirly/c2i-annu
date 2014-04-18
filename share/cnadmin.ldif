@@ -1,0 +1,5 @@
+dn: cn=admin,ou=c2i1,ou=ac-grenoble,ou=education,ou=gouv,c=fr
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: admin
+userPassword: {SSHA}myOZMyTK6ejIfq/M8x3OmsOKATWoHSOx

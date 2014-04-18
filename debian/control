@@ -1,0 +1,15 @@
+Source: c2i-annu
+Section: unknown
+Priority: extra
+Maintainer: Laurent COOPER <laurent.cooper@ac-grenoble>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.7.3
+
+Package: c2i-annu
+Architecture: all
+Depends: php5,php5-ldap, php5-mcrypt, smarty
+Description: Web interface for populating a LDAP for C2I1
+  Letting BTS students pass a C2I exam on an educational district level with the
+  national platform is not possible without having them in a LDAP
+  This package was developped at CARMI-I in grenoble, France, 
+  in order to manage this LDAP.

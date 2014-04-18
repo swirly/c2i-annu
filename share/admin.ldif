@@ -1,0 +1,15 @@
+dn: uid=admin,ou=#PEOPLE#,#BASEDN#
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+uid: admin
+cn: Administrateur
+sn: SE3
+mail: admin@#MAILDOMAIN#
+loginShell: /bin/bash
+uidNumber: 5000
+gidNumber: 5005
+homeDirectory: /home/admin
+userPassword: {crypt}#ADMINPASS#
+

@@ -1,0 +1,5 @@
+dn: ou=c2i1,ou=ac-grenoble,ou=education,ou=gouv,c=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: c2i1
+

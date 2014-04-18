@@ -1,0 +1,3 @@
+Globally
+* debian packaging
+* documentation
