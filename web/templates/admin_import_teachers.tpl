@@ -1,19 +1,11 @@
 {include file="header.tpl"}
-<div class="formbox">
-  <form enctype="multipart/form-data" action="index.php" method="post">
-  <input type="hidden" name="MAX_FILE_SIZE" value="600000" />
-  <input type="hidden" name="page" value="admin" />
-  <input type="hidden" name="action" value="import_teachers_process" />
-
-{if $error_message neq  ""}
-<div class="error">
-  {$error_message}
-</div>
-{/if}
-
-
-<div class="formhelp">
-  <h2> import de fichier </h2>
+<div class="container">
+  <div class="page-header text-center">
+    <h2> Import des enseignants </h2>
+  </div>
+  <div class="row">
+   
+<div class="alert alert-info">
   <p> Le fichier a importer doit remplir les critères suivants :
   <ul>
     <li> être un fichier CSV contenant un enseignant par ligne </li>
@@ -26,7 +18,8 @@
   <p>
   les champs à renseigner pour chaque enseignant sont les suivants
   (bien respecter la casse) :
-  <table>
+  </p>
+  <table class="table table-nonfluid table-striped table-hover table-condensed">
     <thead>
       <tr>
 	<th> entête </th>
@@ -55,15 +48,24 @@
     </tr>
   </table>
 </div>
+</div>
 
-<div class="formdata">
+<div class="row">
+ <form enctype="multipart/form-data" action="index.php" method="post">
+  <input type="hidden" name="MAX_FILE_SIZE" value="600000" />
+  <input type="hidden" name="page" value="admin" />
+  <input type="hidden" name="action" value="import_teachers_process" />
+
+<p>
   Fichier des enseignants &agrave importer :
   <input name="teachers_import_file" type="file" />
-</div>
-<div class="formbuttons">
-  <input type="submit" value="Envoyer le fichier" />
-</div>
+  </p>
+<div class="text-center">
+  <button class="btn btn-primary" type="submit">
+  Envoyer le fichier
+  </button>
 </div>
 </form>
-
+</div>
+</div>
 {include file="footer.tpl"}

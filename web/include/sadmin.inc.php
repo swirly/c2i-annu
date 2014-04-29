@@ -1,5 +1,5 @@
 <?php
-require_once('note-class.inc.php');
+//require_once('note-class.inc.php');
 // sadmin view page.
 
 
@@ -153,7 +153,7 @@ $pupil_can_select='.(($config['pupil_can_select']=='on')?'true':'false').';
 }
 
 function sadmin_export_naissance(){
-         global $current_year;  
+/*         global $current_year;  
         $a_final=array();
 
         $schools=ldap_read_schools();
@@ -212,7 +212,7 @@ function sadmin_export_naissance(){
 
         $workbook->send('naissance_c2i.xls');
         $workbook->close();
-
+*/
 
 }
 

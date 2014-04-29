@@ -1,13 +1,14 @@
 {include file="header.tpl"}
-<div class="formbox">
+<div class="container">
   <form name='trashlist' action='index.php' method='post'>
   <input type='hidden' name='page' value='none' />
   <input type='hidden' name='action' value='none' />
   <input type='hidden' name='uid' value='none'/>
   <input type='hidden' name='section' value='{$section}'/>
-  Liste des élèves qui ne sont pas inscrits.
-<div class="formdata">
-  <table>
+  <div class="text-center">
+ <h2> Liste des élèves qui ne sont pas inscrits.</h2>
+ </div>
+  <table class="table table-nonfluid table-striped table-hover">
     <thead>
       <tr>
 	<th> <img src="images/ok.png" onclick="checkAll(document.trashlist)"></img>
@@ -35,10 +36,12 @@
     </tr>
     {/foreach}
   </table>
-</div>
-<div class="formdata">
-  <img src='images/reload_24.png' width='24' height='24' title='recharger' {$reload_link} />
-  Récupérer les élèves sélectionnés.
+
+<div class="text-center">
+  <button class="btn btn-primary" {$reload_link} > 
+  <i class="fa fa-refresh fa-2x" style="vertical-align:middle;"></i>
+    &nbsp; Récupérer les élèves sélectionnés. 
+  </button>
 </div>
 </form>
 </div> 

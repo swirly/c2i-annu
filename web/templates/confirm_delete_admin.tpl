@@ -1,13 +1,14 @@
 {include file="header.tpl"}
-<div class="formbox">
+<div class="container">
   <form name='confirmform' action='index.php' method='post'>
   <input type='hidden' name='page' value='admins' />
   <input type='hidden' name='action' value='' />
   <input type='hidden' name='uid' value='{$admin.uid}' />
+  <div class="page-header text-center">
+    <h2> Suppression d'un administrateur </h2>
+  </div>
 
-<div class="formdata">
-
-  <table>
+  <table class="table table-nonfluid table-striped table-hover table-condensed">
     <thead>
       <tr>
 	<th>Uid</th>
@@ -24,9 +25,8 @@
       <td> {$admin.rne} </td>
     </tr>
   </table>
-</div>
 
-<div class="formbuttons">
+<div class="text-center">
 
   Confirmez vous la suppression de l'administrateur ? <br>
   

@@ -1,8 +1,7 @@
 {include file="header.tpl"}
-<div class="formbox">
-
-<div class="formdata">  
-  <table>
+<div class="container">
+  
+  <table class="table table-striped table-nonfluid">
     {if $admin.uid neq ""}
     <tr>
       <td> Identifiant </td>
@@ -58,7 +57,6 @@
       </td>
     </tr>
   </table>
-  
-</div>
+
 </div>
 {include file="footer.tpl"}

@@ -1,17 +1,12 @@
 {include file="header.tpl"}
-<div class="formbox">
+<div class="container">
 
-{if $error neq  ""}
-<div class="error">
-  {$error}
-</div>
-{/if}
-
+<div class="col-md-8 col-md-offset-2" style="display:inline-block;">
+<div class="text-center alert alert-info">
 Voici la liste des mots de passe réinitialisés.<br>
 Sauvegardez cette page ou imprimez là. <br>
-
-<div class="formdata">
-  <table>
+</div>
+  <table class="table table-nonfluid table-striped table-hover">
     <thead>
       <tr>
 	<th> Identifiant</th>
@@ -27,6 +22,7 @@ Sauvegardez cette page ou imprimez là. <br>
     </tr>
     {/foreach}
   </table>
-</div>
+  </div>
+
 </div> 
 {include file="footer.tpl"}

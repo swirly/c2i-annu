@@ -3,8 +3,8 @@
 require_once('section-class.inc.php');
 require_once('people-class.inc.php');
 require_once('sconet-xml.php');
-require_once('mysql.inc.php');
-require_once('note-class.inc.php');
+//require_once('mysql.inc.php');
+//require_once('note-class.inc.php');
 
 // admin view page.
 

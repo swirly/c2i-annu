@@ -1,8 +1,11 @@
 {include file="header.tpl"}
-<div class="formbox">
+<div class="container">
+<div class="page-header text-center">
+<h2> Import des &eacute;tudiants </h2>
+</div>
+<div class="row">
   Les sections déjà présentes dans votre établissement sont les suivantes :
-  <div class="formdata">
-  <table>
+  <table class="table table-nonfluid table-striped table-hover table-condensed">
     <thead>
       <tr>
 	<th> code classe </th>
@@ -19,17 +22,14 @@
     {/foreach}
   </table>
 </div>
-</form>
-</div>
 
-<div class="formbox">
+<div class="row">
   Les sections suivantes ne sont pas encore existantes
   et figurent dans le fichier d'import. Vous pouvez créer ces sections
   en cliquant sur valider, ou vous pouvez annuler l'import et retraiter
   votre fichier pour faire correspondre les noms de sections
   aux sections existantes.
-<div class="formdata">
-  <table>
+  <table class="table table-nonfluid table-striped table-hover table-condensed">
     <thead>
       <tr>
 	<th> code classe </th>
@@ -46,8 +46,7 @@
     {/foreach}
   </table>
 </div>
-</div>
-<div class="formbuttons">
+<div class="text-center">
   <form name='confirmform' action='index.php' method='post'>
   <input type='hidden' name='page' value='admin' />
   <input type='hidden' name='action' value='' />
@@ -56,8 +55,7 @@
   Créer les sections.
   <img src='images/no_24.png' width='24' height='24' title='Annuler' {$cancel_link} />
   Annuler.
-  </div>
-</div>
 </form>
 </div> 
+</div>
 {include file="footer.tpl"}

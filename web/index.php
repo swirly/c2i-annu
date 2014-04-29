@@ -18,6 +18,16 @@ global $c2i_ldap;
 global $smarty;
 global $current_year;
 
+//quick fix for php > 5.4
+function session_is_registered($x)
+{
+    if (isset($_SESSION['$x']))
+    return true;
+    else
+    return false;
+}
+
+
 // Etablissement des ressources LDAP complétes.
 
 $c2i_ldap['groups_dn']="ou=".$c2i_ldap['groups_ou'].",".$c2i_ldap['base_dn'];
@@ -28,20 +38,20 @@ $c2i_ldap['admin_dn']="cn=".$c2i_ldap['admin_rdn'].",".$c2i_ldap['base_dn'];
 $ldap_res=ldap_connection();
 
 if ($DEBUG) {
-  $debug_info .=("debugging informations");
-  $debug_info .=("<hr>Session<hr><pre>");
+  $debug_info =("debugging informations");
+  $debug_info .=("   <div class=\"panel panel-default\">\n<div class=\"panel-heading\">\nSession</div>\n<div class=\"panel-body\">\n<pre>");
   $debug_info .=print_r($_SESSION,true);
-  $debug_info .=("</pre><hr>");
-  $debug_info .=("<hr>POST<hr><pre>");
+  $debug_info .=("</pre></div></div>");
+  $debug_info .=("   <div class=\"panel panel-default\">\n<div class=\"panel-heading\">\nPOST</div>\n<div class=\"panel-body\">\n<pre>");
   $debug_info .=print_r($_POST,true);
-  $debug_info .=("</pre><hr>");
-  $debug_info .=("<hr>GET<hr><pre>");
+  $debug_info .=("</pre></div></div>");
+  $debug_info .=("   <div class=\"panel panel-default\">\n<div class=\"panel-heading\">\nGET</div>\n<div class=\"panel-body\">\n<pre>");
   $debug_info .=print_r($_GET,true);
-  $debug_info .=("</pre><hr>");
-  $smarty->assign ('debug_info',$debug_info);
+  $debug_info .=("</pre></div></div>");
+  $smarty->assign ('debug_infomsg',$debug_info);
 }
 
-if (!session_is_registered("user")) {
+if (!isset($_SESSION['user'])) {
     $page="login";
  } else {
     if ( $_POST['page'] != 'logout') {    
@@ -74,8 +84,8 @@ if (!session_is_registered("user")) {
  }
 
 
-$action=$_POST['action'];
-
+if (isset($_POST['action'])) $action=$_POST['action'];
+else $action='none';
 
 switch ($page) {
     /*
@@ -101,7 +111,7 @@ switch ($page) {
 	 break;
      default:
          $smarty->assign('header_title','Authentification');
-	 $smarty->display('login.tpl');
+         $smarty->display('login.tpl');
 	 break;
      }
      break;     

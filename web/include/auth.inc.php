@@ -37,7 +37,7 @@ class user {
 	  /* make password test only for the good login :) */
 	  if ($file_login == $login) {
 	      /* hashing password with the same file_password salt and compare */
-	      $crypted_pass = crypt($password, $file_password);
+	      $crypted_pass = crypt($password,$file_password);
 	      if ($crypted_pass == $file_password) {
 		  return true;
 	      } else {

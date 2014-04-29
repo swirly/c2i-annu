@@ -1,5 +1,7 @@
 {include file="header.tpl"}
-
-  <b>L'opération demandée n'est pas autorisée.</b>
-
+<div class="container">
+  <div class="alert alert-danger"
+  	<b>L'opération demandée n'est pas autorisée.</b>
+  </div>
+</div>
 {include file="footer.tpl"}

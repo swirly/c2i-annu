@@ -1,5 +1,0 @@
-#!/bin/bash
-cp -r /usr/local/src/c2i-annu/web/* /usr/share/c2i-annu/web
-cd /usr/share/c2i-annu/web
-/usr/local/bin/svnrmadm
-chown -R www-data:www-data /usr/share/c2i-annu/web

@@ -2,7 +2,9 @@
 
 require_once('/etc/c2i-annu/config.php');
 
-require_once($smarty_full_path.'Smarty.class.php');
+require_once('smarty3/Smarty.class.php');
+
+//$DEBUG=true;
 
 $c2ildapadm_root_path="/usr/share/c2i-annu/web/";
 $c2ildapadm_var_path="/var/lib/c2i-annu/";
@@ -11,17 +13,13 @@ class SmartyC2I extends Smarty {
 
   function __construct() {
     global $DEBUG,$c2ildapadm_root_path,$c2ildapadm_var_path,$c2imaster_mail;
-    // Class Constructor.
-    // These automatically get set with each new instance.
-    $this->Smarty();
+    parent::__construct();
 
     $this->template_dir = $c2ildapadm_root_path."templates";
     $this->config_dir = $c2ildapadm_root_path."configs";
     $this->compile_dir =$c2ildapadm_var_path."templates_c";
     $this->cache_dir =  $c2ildapadm_var_path."cache";
         
-    // think twice before enabling caching, is everything really
-    // ready to be cached?
     $this->caching = false;
     
     $this->assign('app_name', 'Annuaire C2I');
@@ -33,39 +31,45 @@ class SmartyC2I extends Smarty {
     $this->assign('c2imaster_mail',$c2imaster_mail);
     
     if ($DEBUG) {
-      $this->debug_info("<hr><h3>POST</h3><hr><pre>".print_r($_POST,1)."</pre>");
-      $this->debug_info("<hr><h3>SESSION</h3><hr><pre>".print_r($_SESSION,1)."</pre>");
-      $this->debug_info("<hr><h3>GET</h3><hr><pre>".print_r($_GET,1)."</pre>");
+      $this->debug_info("<div class=\"alert\"><h3>POST</h3><hr><pre>".print_r($_POST,1)."</pre></div>");
+      $this->debug_info("<div class=\"alert\"><h3>SESSION</h3><hr><pre>".print_r($_SESSION,1)."</pre></div>");
+      $this->debug_info("<div class=\"alert\"><h3>GET</h3><hr><pre>".print_r($_GET,1)."</pre></div>");
     }
     
   }
   
   function info($msg) {
-    if ($this->get_template_vars("infomsg")) {
+      if ($msg!="") {
+    if ($this->getTemplateVars("infomsg")) {
       $this->append("infomsg", $msg);
     } else {
       $this->assign("infomsg", array($msg));
     }
   }
+  }
   
   function warning($msg) {
-    if ($this->get_template_vars("warningmsg")) {
+      if ($msg!="") {
+    if ($this->getTemplateVars("warningmsg")) {
       $this->append("warningmsg", $msg);
     } else {
       $this->assign("warningmsg", array($msg));
     }
   }
+  }
   
   function error($msg) {
-    if ($this->get_template_vars("errormsg")) {
-      $this->append("errormsg", $msg);
-    } else {
-      $this->assign("errormsg", array($msg));
+      if ($msg!="") {
+          if ($this->getTemplateVars("errormsg")) {
+              $this->append("errormsg", $msg);
+          } else {
+              $this->assign("errormsg", array($msg));
+          }
+      }
     }
-  }
 
   function debug_info($msg) {
-    if ($this->get_template_vars("debug_infomsg")) {
+    if ($this->getTemplateVars("debug_infomsg")) {
       $this->append("debug_infomsg", $msg);
     } else {
       $this->assign("debug_infomsg", array($msg));

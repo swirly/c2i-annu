@@ -2,9 +2,9 @@
 
 function ldap_connection() {
     global $c2i_ldap;
-    $ldap_res=@ldap_connect($c2i_ldap['ip']) or die("impossible de se connecter au LDAP!");
-    @ldap_set_option($ldap_res, LDAP_OPT_PROTOCOL_VERSION, 3);  
-    @ldap_bind($ldap_res,$c2i_ldap['admin_dn'],$c2i_ldap['admin_pwd']);
+    $ldap_res=ldap_connect($c2i_ldap['ip']) or die("impossible de se connecter au LDAP!");
+    ldap_set_option($ldap_res, LDAP_OPT_PROTOCOL_VERSION, 3);  
+    ldap_bind($ldap_res,$c2i_ldap['admin_dn'],$c2i_ldap['admin_pwd']);
     return $ldap_res;     
   }
 

@@ -93,7 +93,8 @@ class section {
       $school_ou="ou=".$this->rne.",".$c2i_ldap['schools_dn'];
       $ldap_section['ou']=$school_ou;
       $ldap_section['member']=$c2i_ldap['admin_dn'];
-      ldap_add($ldap_res,$ldap_dn,$ldap_section);  
+
+      ldap_add($ldap_res,$ldap_dn,$ldap_section); 
     }
      
   }
