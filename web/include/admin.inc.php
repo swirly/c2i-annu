@@ -469,7 +469,7 @@ function admin_process_sconet_import() {
 	  array_push($old_section_list,$section_array);	
 	} 
 	else {
-	  $section_array['description']="création automatiqueà l'import";
+	  $section_array['description']="création automatique à l'import";
 	  array_push($new_section_list,$section_array);
 	}
       }

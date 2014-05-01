@@ -1,6 +1,11 @@
 <?php
+require_once('include/pays.inc.php');
+require_once('include/insee.inc.php');
 
 function process_sconet_xml ($file) {
+
+  global $INSEE_PAYS;
+  global $INSEE_FRANCE;
 
   // Un truc étonnant... le fichier est en ISO8859-15
   // Mais simplexml me donne de l'UTF-8 direct...
@@ -24,8 +29,18 @@ function process_sconet_xml ($file) {
       $eleves[$id]['name']= trim ((string) $child->NOM);
       $eleves[$id]['firstname']= trim((string) $child->PRENOM);
       $eleves[$id]['birth']= trim((string) $child->DATE_NAISS);  
-      $eleves[$id]['localisation']= trim((string) $child->CODE_COMMUNE_INSEE_NAISS);
+
+      if ((string) $child->CODE_COMMUNE_INSEE_NAISS !='') {
+        $localisation = $INSEE_FRANCE[trim((string) $child->CODE_COMMUNE_INSEE_NAISS)];
+        $localisation = $localisation." ( ".substr(trim((string) $child->CODE_COMMUNE_INSEE_NAISS),0,2)." ) ";
+      } else {
+        $pays = trim((string) $child->CODE_PAYS);
+        $ville = trim((string) $child->VILLE_NAISS);
+        $localisation = "$ville ( ".$pays." )";
+      }
+      $eleves[$id]['localisation']= $localisation;
       $eleves[$id]['rne']= trim((string) $XML->PARAMETRES->UAJ); 
+      $eleves[$id]['nationalite']= trim((string) $child->CODE_PAYS_NAT); 
       $eleves[$id]['type']="pupil";
     }
   }

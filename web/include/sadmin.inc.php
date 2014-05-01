@@ -330,22 +330,81 @@ function sadmin_ldap_export_csv() {
 
     $all_pupils = ldap_read_pupils();
     $pupils = $all_pupils['pupils'];
+    $all_schools = ldap_read_schools();
+    $schools=array();
+    foreach ($all_schools as $school) {
+      $schools[$school['rne']]=$school;
+    }
+
+    $count = 1;
+    $translate_array = array('à'=>'a',
+       'À'=>'A',
+       'ä'=>'a',
+       'Ä'=>'A',
+       'â'=>'a',
+       'Â'=>'A',
+       'é'=>'e',
+       'É'=>'E',
+       'è'=>'e',
+       'È'=>'E',
+       'ê'=>'e',
+       'Ê'=>'E',
+       'ë'=>'e',
+       'Ë'=>'E',
+       'ö'=>'o',
+       'Ö'=>'O',
+       'ô'=>'o',
+       'Ô'=>'O',
+       'ù'=>'u',
+       'Ù'=>'U',
+       'ï'=>'i',
+       'Ï'=>'I',
+       'î'=>'i',
+       'Î'=>'I',
+       'ÿ'=>'y',
+       'Ÿ'=>'Y',
+       'ç'=>'c',
+       'Ç'=>'C',
+       'œ'=>'oe',
+       'Œ'=>'OE',
+       'ñ'=>'n',
+       'Ñ'=>'N');
 
     header('Content-Type: application/csv-tab-delimited-table');
     header('Content-Disposition: attachment; filename="c2i_eleves.csv"');
     header('Pragma: no-cache');
 
-    print "INE;Nom;Prenom;Login;Date de naissance;Lieu de naissance;RNE;Section;\n";
+    //print "INE;Title;Nom;Prenom;Login;Date de naissance;Lieu de naissance;RNE;Section;\n";
+    print "Ordre;Nationalité;NumEtu;ClefNumEtu;DateNaissance;Temoin;Nom;Prenom;Ville;CodePaysouDep;";
+    print "CP;Commune;Etablissement;Adresse;Adresse2;Sexe;\n";
+
 
     foreach ($pupils as $pupil) {
-	print $pupil['ine'].";";
-	print $pupil['name'].";";
-	print $pupil['firstname'].";";
-	print $pupil['uid'].";";
-	print $pupil['birth'].";";
-	print $pupil['localisation'].";";
-	print $pupil['rne'].";";
-	print $pupil['section'].";\n";	
+      printf("C2I%05d;",$count);
+      print $pupil['nationalite'].";";
+      print substr($pupil['ine'],0,10).";";
+      print substr($pupil['ine'],-1).";";
+      print $pupil['birth'].";";
+      print "N;";
+      print strtr($pupil['name'],$translate_array).";";
+      $prenom = strtr($pupil['firstname'],$translate_array);
+      $prenoms=array();
+      preg_match("/[A-Z]{1}[a-z]*/", $prenom ,$prenoms);
+      print $prenoms[0].";";
+      print preg_replace("/(.*)\(.*/", '$1', $pupil['localisation']).";";
+      print preg_replace("/.*\( (.*) \)/", '$1', $pupil['localisation']).";";
+      $rne = $pupil['rne'];
+      print $schools[$rne]['postalcode'].";";
+      print $schools[$rne]['city'].";";
+      print $schools[$rne]['name'].";";
+      print $schools[$rne]['address']."; ;";
+      if ($pupil['title']=="Mlle") {
+        print("F;");
+      } else {
+        print ("M;");
+      }
+      print "\n";
+      $count++;	
     }  
 }
 

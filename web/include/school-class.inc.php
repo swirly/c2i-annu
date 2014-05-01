@@ -64,7 +64,12 @@ function read_from_ldap ($rne) {
     $exploded=explode(',',$rne);
     $rne=$exploded['0'];
     $exploded=explode('=',$rne);
-    $uid=$exploded['1'];
+    if (isset($exploded['1'])) {
+      $rne=$exploded['1'];
+    } 
+    else {
+      $rne=$exploded['0'];
+    }
     $filter="(ou=$rne)";
     
     $ldap_search_result=ldap_list($ldap_res,$search_dn,$filter);

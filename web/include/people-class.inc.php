@@ -2,6 +2,7 @@
 
 require_once('/etc/c2i-annu/config.php');
 require_once('include/ldap.inc.php');
+require_once('include/pays.inc.php');
 
 function cmpTri($a,$b){
     return strcmp($a["name"], $b["name"]);
@@ -25,6 +26,7 @@ class people {
   public $type; // correspond au LDAP employetype : sadmin, admin, teacher, pupil
   public $cn;
   public $localisation; // lieu de naissance
+  public $nationalite;  // nationalite pour les eleves
   // Si il y a un argument unique, le constructeur considère que c'est l'UID 
   // et lit les valeurs dans le LDAP
   // Si l'arugument  est un tableau, il l'utilise pour remplir
@@ -54,6 +56,7 @@ class people {
 	$this->rne=$people['rne'];
 	$this->type=$people['type'];
 	$this->localisation=$people['localisation'];
+  $this->nationalite=$people['nationalite'];
       }
       else{
 	$this->read_from_ldap(func_get_arg(0));
@@ -384,7 +387,9 @@ class people {
     $this->assign_attrib_from_ldap($people,'employeetype','type');
     $this->assign_attrib_from_ldap($people,'employeenumber','ine');
     $this->assign_attrib_from_ldap($people,'cn','cn');
-    $this->assign_attrib_from_ldap($people,'l','localisation');    
+    $this->assign_attrib_from_ldap($people,'l','localisation');   
+    $this->assign_attrib_from_ldap($people,'preferredlanguage','nationalite');   
+
   }
 
 
@@ -410,7 +415,8 @@ class people {
       if ($this->type=="pupil") {
 	  $this->map_to_ldap($ldap_entry,'section','departmentNumber');
 	  $this->map_to_ldap($ldap_entry,'birth','carLicense');      
-	  $this->map_to_ldap($ldap_entry,'localisation','l');      
+	  $this->map_to_ldap($ldap_entry,'localisation','l'); 
+    $this->map_to_ldap($ldap_entry,'nationalite','preferredLanguage');      
 	  break;
       }
 
@@ -470,7 +476,8 @@ class people {
 	$this->map_to_ldap($ldap_admin,'section','departmentNumber');
 	$this->map_to_ldap($ldap_admin,'rne','ou');      
 	$this->map_to_ldap($ldap_admin,'localisation','l');      
-	
+  $this->map_to_ldap($ldap_admin,'nationalite','preferredLanguage');      
+  
 	ldap_modify($ldap_res,$ldap_dn,$ldap_admin);
 
 	/* strategie : 
@@ -522,6 +529,8 @@ class people {
       $this->cn=$this->firstname." ".$this->name;
       $this->map_to_ldap($ldap_admin,'cn','cn');
       $this->map_to_ldap($ldap_admin,'localisation','l');
+      $this->map_to_ldap($ldap_admin,'nationalite','preferredLanguage');      
+
       ldap_add($ldap_res,$ldap_dn,$ldap_admin);  
       $this->initiate_password();
       switch ($this->type) {
