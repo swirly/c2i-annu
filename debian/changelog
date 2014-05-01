@@ -1,4 +1,11 @@
-c2i-annu (0.99~3) unstable; urgency=low
+c2i-annu (1.0) unstable; urgency=low
+
+  * moved to bootstrap instead of personnal CSS
+  * modify CSV export to cope with APOGEE
+
+ -- laurent COOPER <laurent.cooper@ac-grenoble.fr>  Thu, 01 May 2014 17:43:18 +0200
+
+c2i-annu (0.99) unstable; urgency=low
 
   * Added SQL synchro for teachers.
   * Added a smarty abstract class with error, warning and info functions
